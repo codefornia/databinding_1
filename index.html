@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Двустороннее связывание</title>
+</head>
+<body>
+  <div class="user">
+    <div class="user__card">
+      <input class="user__name" type="text" placeholder="Имя персонажа">
+      <button class="user__random-name" type="button">Случайное</button>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    const input = document.querySelector('.user__name');
+
+    const data = {
+      _value: '',
+      get value() {
+        return this._value;
+      },
+      set value(newValue) {
+        this._value = newValue;
+        input.value = newValue;
+      }
+    }
+
+    const button = document.querySelector('.user__random-name');
+
+    button.addEventListener(
+  'click',
+  () => data.value = `Пользователь ${Math.random().toFixed(3) * 1000}`,
+);
+
+    input.addEventListener('input', (evt) => data.value = evt.target.value);
+  </script>
+</body>
+</html>
